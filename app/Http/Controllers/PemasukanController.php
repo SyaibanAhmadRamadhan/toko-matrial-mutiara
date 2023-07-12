@@ -27,20 +27,37 @@ class PemasukanController extends Controller
 
     public function export($type)
     {
-        if ($type == "excel") {
-            return Excel::download(new ExportPemasukanKas, 'pemasukan kas.xlsx');
+        if ($_GET['dari'] != "" && $_GET['sampai'] != "") {
+            if ($type == "excel") {
+                return Excel::download(new ExportPemasukanKas($_GET['dari'], $_GET['sampai']), 'pemasukan kas.xlsx');
+            }
+            $all = PemasukanKas::where("tanggal_masuk", ">=", $_GET['dari'])->where("tanggal_masuk", "<=", $_GET['sampai'])->get();
+            $total = 0;
+            foreach ($all as $key => $x) {
+                $total += $x->uang_masuk;
+            }
+            $pdf = FacadePdf::loadView('after-revisi.export.pemasukan', [
+                'pemasukan' =>  PemasukanKas::where("tanggal_masuk", ">=", $_GET['dari'])->where("tanggal_masuk", "<=", $_GET['sampai'])->orderBy('tanggal_masuk', 'ASC')->get(),
+                'title' => 'pemasukan',
+                'total' => $total
+            ]);
+            return $pdf->download('pemasukan kas.pdf');
+        } else {
+            if ($type == "excel") {
+                return Excel::download(new ExportPemasukanKas("", ""), 'pemasukan kas.xlsx');
+            }
+            $all = PemasukanKas::get();
+            $total = 0;
+            foreach ($all as $key => $x) {
+                $total += $x->uang_masuk;
+            }
+            $pdf = FacadePdf::loadView('after-revisi.export.pemasukan', [
+                'pemasukan' =>  PemasukanKas::orderBy("tanggal_masuk", 'ASC')->get(),
+                'title' => 'pemasukan',
+                'total' => $total
+            ]);
+            return $pdf->download('pemasukan kas.pdf');
         }
-        $all = PemasukanKas::get();
-        $total = 0;
-        foreach ($all as $key => $x) {
-            $total += $x->uang_masuk;
-        }
-        $pdf = FacadePdf::loadView('after-revisi.export.pemasukan', [
-            'pemasukan' =>  PemasukanKas::orderBy("tanggal_masuk", 'desc')->get(),
-            'title' => 'pemasukan',
-            'total' => $total
-        ]);
-        return $pdf->download('pemasukan kas.pdf');
     }
 
     public function create()

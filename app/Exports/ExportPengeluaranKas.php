@@ -11,20 +11,41 @@ use Maatwebsite\Excel\Concerns\WithColumnWidths;
 
 class ExportPengeluaranKas implements FromView, WithColumnWidths
 {
+    private $dari;
+    private $sampai;
+
+    public function __construct(string $dari, string $sampai)
+    {
+        $this->sampai = $sampai;
+        $this->dari = $dari;
+    }
 
     public function view(): View
     {
-        $all = PengeluaranKas::get();
-        $total = 0;
-        foreach ($all as $key => $x) {
-            $total += $x->uang_keluar;
+        if ($this->dari != "" && $this->sampai != "") {
+            $all = PengeluaranKas::where("tanggal_keluar", ">=", $this->dari)->where("tanggal_keluar", "<=", $this->sampai)->get();
+            $total = 0;
+            foreach ($all as $key => $x) {
+                $total += $x->uang_keluar;
+            }
+            return view('after-revisi.export.pengeluaran', [
+                'pengeluaran' =>  PengeluaranKas::where("tanggal_keluar", ">=", $this->dari)->where("tanggal_keluar", "<=", $this->sampai)->orderBy('tanggal_keluar', 'ASC')->get(),
+                'title' => 'pengeluaran',
+                'total' => $total
+            ]);
+        } else {
+            $all = PengeluaranKas::get();
+            $total = 0;
+            foreach ($all as $key => $x) {
+                $total += $x->uang_keluar;
+            }
+            // dd($total);
+            return view('after-revisi.export.pengeluaran', [
+                'pengeluaran' =>  PengeluaranKas::orderBy("tanggal_keluar", 'asc')->get(),
+                'title' => 'pengeluaran',
+                'total' => $total
+            ]);
         }
-        // dd($total);
-        return view('after-revisi.export.pengeluaran', [
-            'pengeluaran' =>  PengeluaranKas::orderBy("tanggal_keluar", 'desc')->get(),
-            'title' => 'pengeluaran',
-            'total' => $total
-        ]);
     }
 
     public function columnWidths(): array

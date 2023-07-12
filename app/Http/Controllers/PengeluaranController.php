@@ -27,20 +27,39 @@ class PengeluaranController extends Controller
 
     public function export($type)
     {
-        if ($type == "excel") {
-            return Excel::download(new ExportPengeluaranKas, 'pengeluaran kas.xlsx');
+
+
+        if ($_GET['dari'] != "" && $_GET['sampai'] != "") {
+            if ($type == "excel") {
+                return Excel::download(new ExportPengeluaranKas($_GET['dari'], $_GET['sampai']), 'pemasukan kas.xlsx');
+            }
+            $all = PengeluaranKas::where("tanggal_keluar", ">=", $_GET['dari'])->where("tanggal_keluar", "<=", $_GET['sampai'])->get();
+            $total = 0;
+            foreach ($all as $key => $x) {
+                $total += $x->uang_keluar;
+            }
+            $pdf = FacadePdf::loadView('after-revisi.export.pengeluaran', [
+                'pengeluaran' =>  PengeluaranKas::where("tanggal_keluar", ">=", $_GET['dari'])->where("tanggal_keluar", "<=", $_GET['sampai'])->orderBy('tanggal_keluar', 'ASC')->get(),
+                'title' => 'pengeluaran',
+                'total' => $total
+            ]);
+            return $pdf->download('pengeluaran kas.pdf');
+        } else {
+            if ($type == "excel") {
+                return Excel::download(new ExportPengeluaranKas("", ""), 'pengeluaran kas.xlsx');
+            }
+            $all = PengeluaranKas::get();
+            $total = 0;
+            foreach ($all as $key => $x) {
+                $total += $x->uang_keluar;
+            }
+            $pdf = FacadePdf::loadView('after-revisi.export.pengeluaran', [
+                'pengeluaran' =>  PengeluaranKas::orderBy("tanggal_keluar", 'ASC')->get(),
+                'title' => 'pengeluaran',
+                'total' => $total
+            ]);
+            return $pdf->download('pengeluaran kas.pdf');
         }
-        $all = PengeluaranKas::get();
-        $total = 0;
-        foreach ($all as $key => $x) {
-            $total += $x->uang_keluar;
-        }
-        $pdf = FacadePdf::loadView('after-revisi.export.pengeluaran', [
-            'pengeluaran' =>  PengeluaranKas::orderBy("tanggal_keluar", 'desc')->get(),
-            'title' => 'pengeluaran',
-            'total' => $total
-        ])->setPaper('a4', 'potrait');;
-        return $pdf->download('pengeluaran kas.pdf');
     }
 
     public function create()

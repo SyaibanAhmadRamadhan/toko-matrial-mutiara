@@ -28,11 +28,11 @@
                                             <span>Export : </span>
                                             <div class="btn-group">
                                                 <a class="btn btn-danger dropdown-toggle btn-sm"
-                                                    href="{{ route('pemasukan.export', ['type' => 'pdf']) }}">Pdf</a>
+                                                    href="/pemasukan/export/pdf?dari={{ isset($_GET['dari']) ? $_GET['dari'] : '' }}&sampai={{ isset($_GET['sampai']) ? $_GET['sampai'] : '' }}">Pdf</a>
                                             </div>
                                             <div class="btn-group">
                                                 <a class="btn btn-success dropdown-toggle btn-sm"
-                                                    href="{{ route('pemasukan.export', ['type' => 'excel']) }}">Excel</a>
+                                                    href="/pemasukan/export/excel?dari={{ isset($_GET['dari']) ? $_GET['dari'] : '' }}&sampai={{ isset($_GET['sampai']) ? $_GET['sampai'] : '' }}">Excel</a>
                                             </div>
                                         </div>
                                         <form action="" method="get" class="col-12 col-md-6 w-100">
