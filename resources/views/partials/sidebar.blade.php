@@ -55,7 +55,6 @@
                 </li>
                 <li class="nav-item {{ Request::is('pengeluaran*') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{ Request::is('pengeluaran*') ? 'active' : '' }}">
-
                         <p>
                             pengeluaran kas
                             <i class="fas fa-angle-left right"></i>
@@ -68,10 +67,6 @@
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Data</p>
                             </a>
-                            {{-- <a href="#" class="nav-link {{ Request::is('pengeluaran') ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Data</p>
-                            </a> --}}
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('pengeluaran.create') }}"
@@ -79,97 +74,33 @@
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Tambah</p>
                             </a>
-                            {{-- <a href="#" class="nav-link {{ Request::is('pengeluaran/create') ? 'active' : '' }}">
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item {{ Request::is('kasbon*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ Request::is('kasbon*') ? 'active' : '' }}">
+                        <p>
+                            kasbon kas
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('kasbon.index') }}"
+                                class="nav-link {{ Request::is('kasbon') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Data</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('kasbon.create') }}"
+                                class="nav-link {{ Request::is('kasbon/create') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Tambah</p>
-                            </a> --}}
-                        </li>
-                    </ul>
-                </li>
-                {{-- <li class="nav-item {{ Request::is('supplier*') ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ Request::is('supplier*') ? 'active' : '' }}">
-
-                        <p>
-                            Supplier
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('supplier.index') }}"
-                                class="nav-link {{ Request::is('supplier') ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Data Supplier</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('supplier.create') }}"
-                                class="nav-link {{ Request::is('supplier/create') ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Tambah Supplier</p>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item {{ Request::is('product*') ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ Request::is('product*') ? 'active' : '' }}">
-
-                        <p>
-                            Product
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('product.index') }}"
-                                class="nav-link {{ Request::is('product') ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Data Product</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('product.create') }}"
-                                class="nav-link {{ Request::is('product/create') ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Tambah Product</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item {{ Request::is('pembelian-product*') ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ Request::is('pembelian-product*') ? 'active' : '' }}">
-
-                        <p>
-                            pembelian product
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('pembelian-product.index') }}"
-                                class="nav-link {{ Request::is('pembelian-product') ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Data pembelian</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('pembelian-product.create') }}"
-                                class="nav-link {{ Request::is('pembelian-product/create') ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Tambah pembelian </p>
-                            </a>
-                        </li>
-                    </ul>
-                </li> --}}
-
-                {{-- <li class="nav-item">
-                    <a href="{{ route('slipgaji.index') }}" class="nav-link">
-
-                        <p>
-                            Slip Gaji supplier
-                        </p>
-                    </a>
-                </li> --}}
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

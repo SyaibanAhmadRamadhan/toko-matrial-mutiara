@@ -5,11 +5,13 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SlipGajiController;
 use App\Http\Controllers\CategoryProductController;
 use App\Http\Controllers\JenisPemasukanPengeluaranController;
+use App\Http\Controllers\KasbonController;
 use App\Http\Controllers\PemasukanController;
 use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SpendingProductController;
 use App\Http\Controllers\SupplierController;
+use App\Models\Kasbon;
 use App\Models\PengeluaranKas;
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +43,14 @@ Route::group(['prefix' => '/', 'middleware' => 'auth'], function () {
     Route::put("/pengeluaran/update/{id}", [PengeluaranController::class, "update"])->name('pengeluaran.update.post');
     Route::delete("/pengeluaran/delete/{id}", [PengeluaranController::class, "delete"])->name('pengeluaran.delete.post');
     Route::get("/pengeluaran/export/{type}", [PengeluaranController::class, "export"])->name('pengeluaran.export');
+
+    Route::get("/kasbon", [KasbonController::class, "index"])->name('kasbon.index');
+    Route::get("/kasbon/create", [KasbonController::class, "create"])->name('kasbon.create');
+    Route::post("/kasbon/create", [KasbonController::class, "store"])->name('kasbon.create.post');
+    Route::get("/kasbon/update/{id}", [KasbonController::class, "show"])->name('kasbon.update');
+    Route::put("/kasbon/update/{id}", [KasbonController::class, "update"])->name('kasbon.update.post');
+    Route::delete("/kasbon/delete/{id}", [KasbonController::class, "delete"])->name('kasbon.delete.post');
+    Route::get("/kasbon/export/{type}", [KasbonController::class, "export"])->name('kasbon.export');
 
     Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 });
