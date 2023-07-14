@@ -21,6 +21,7 @@ return new class extends Migration
             $table->date('tanggal_kasbon');
             $table->string('nama');
             $table->string('no_telepon');
+            $table->string('status');
             $table->timestamps();
         });
     }

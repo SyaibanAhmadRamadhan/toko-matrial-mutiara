@@ -21,7 +21,7 @@ class KasbonController extends Controller
         // dd(phpinfo());
         return view('after-revisi.kasbon.index', [
             'title' => 'kasbon',
-            'kasbon' => Kasbon::orderBy("tanggal_kasbon", 'desc')->get()
+            'kasbon' => Kasbon::orderBy('status', 'ASC')->orderBy("tanggal_kasbon", 'ASC')->get()
         ]);
     }
 
@@ -37,7 +37,7 @@ class KasbonController extends Controller
                 $total += $x->uang_kasbon;
             }
             $pdf = FacadePdf::loadView('after-revisi.export.kasbon', [
-                'kasbon' =>  Kasbon::where("tanggal_kasbon", ">=", $_GET['dari'])->where("tanggal_kasbon", "<=", $_GET['sampai'])->orderBy('tanggal_kasbon', 'ASC')->get(),
+                'kasbon' =>  Kasbon::where("tanggal_kasbon", ">=", $_GET['dari'])->where("tanggal_kasbon", "<=", $_GET['sampai'])->orderBy('status', 'ASC')->orderBy('tanggal_kasbon', 'ASC')->get(),
                 'title' => 'kasbon',
                 'type' => 'pdf',
                 'total' => $total,
@@ -55,7 +55,7 @@ class KasbonController extends Controller
                 $total += $x->uang_kasbon;
             }
             $pdf = FacadePdf::loadView('after-revisi.export.kasbon', [
-                'kasbon' =>  Kasbon::orderBy("tanggal_kasbon", 'ASC')->get(),
+                'kasbon' =>  Kasbon::orderBy('status', 'ASC')->orderBy("tanggal_kasbon", 'ASC')->get(),
                 'title' => 'kasbon',
                 'total' => $total,
                 'type' => 'pdf',
@@ -79,6 +79,7 @@ class KasbonController extends Controller
         $validasi = $request->validate([
             'tanggal_kasbon' => 'required',
             'uang_kasbon' => 'required',
+            'status' => 'required',
             'nama' => 'required',
             'no_telepon' => 'required',
             'keterangan' => 'required',
@@ -89,6 +90,7 @@ class KasbonController extends Controller
             "tanggal_kasbon" => $validasi["tanggal_kasbon"],
             "uang_kasbon" => $kasbonPrice,
             "nama" => $validasi["nama"],
+            "status" => $validasi["status"],
             "no_telepon" => $validasi["no_telepon"],
             "keterangan" => $validasi["keterangan"],
         ]);
@@ -118,6 +120,7 @@ class KasbonController extends Controller
             'uang_kasbon' => 'required',
             'nama' => 'required',
             'no_telepon' => 'required',
+            'status' => 'required',
             'keterangan' => 'required',
         ]);
 
@@ -126,6 +129,7 @@ class KasbonController extends Controller
             "tanggal_kasbon" => $validasi["tanggal_kasbon"],
             "uang_kasbon" => $kasbonPrice,
             "nama" => $validasi["nama"],
+            "status" => $validasi["status"],
             "no_telepon" => $validasi["no_telepon"],
             "keterangan" => $validasi["keterangan"],
         ]);

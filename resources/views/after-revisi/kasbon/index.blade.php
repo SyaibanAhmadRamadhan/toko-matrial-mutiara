@@ -68,6 +68,7 @@
                                                 <th>nama</th>
                                                 <th>no telepon</th>
                                                 <th>keterangan</th>
+                                                <th>status</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -79,6 +80,7 @@
                                                     <td>{{ $p->nama }}</td>
                                                     <td>{{ $p->no_telepon }}</td>
                                                     <td>{{ $p->keterangan }}</td>
+                                                    <td>{{ $p->status }}</td>
                                                     <td>
                                                         <div class="d-flex flex-row mb-3">
                                                             <div><button type="button"

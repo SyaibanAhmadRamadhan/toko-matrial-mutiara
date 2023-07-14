@@ -109,6 +109,19 @@
                                                 </div>
                                             @enderror
                                         </div>
+                                        <div class="form-group">
+                                            <label for="status">status kasbon</label>
+                                            <div class="form-check">
+                                                <input class="form-check-input" required value="lunas" type="radio"
+                                                    name="status" {{ old('status') == 'lunas' ? 'checked' : '' }}>
+                                                <label class="form-check-label">lunas</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" value="belum lunas" type="radio"
+                                                    name="status" {{ old('status') == 'belum lunas' ? 'checked' : '' }}>
+                                                <label class="form-check-label">belum lunas</label>
+                                            </div>
+                                        </div>
                                     </div>
                                     <!-- /.card-body -->
                                     <div class="card-footer">

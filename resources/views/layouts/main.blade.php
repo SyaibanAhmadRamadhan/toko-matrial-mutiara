@@ -57,21 +57,7 @@
                 "responsive": true,
                 "lengthChange": false,
                 "autoWidth": false,
-                // buttons: [{
-                //         extend: 'excel',
-                //         exportOptions: {
-                //             columns: ':visible',
-
-                //         }
-                //     },
-                //     {
-                //         extend: 'pdf',
-                //         exportOptions: {
-                //             columns: ':visible',
-                //         }
-                //     },
-                //     'colvis'
-                // ]
+                "order": [],
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         });
     </script>
