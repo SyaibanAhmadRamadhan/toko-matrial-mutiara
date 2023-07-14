@@ -41,7 +41,10 @@ class PengeluaranController extends Controller
             $pdf = FacadePdf::loadView('after-revisi.export.pengeluaran', [
                 'pengeluaran' =>  PengeluaranKas::where("tanggal_keluar", ">=", $_GET['dari'])->where("tanggal_keluar", "<=", $_GET['sampai'])->orderBy('tanggal_keluar', 'ASC')->get(),
                 'title' => 'pengeluaran',
-                'total' => $total
+                'total' => $total,
+                'type' => 'pdf',
+                'dari' => $_GET['dari'],
+                'sampai' => $_GET['sampai'],
             ]);
             return $pdf->download('pengeluaran kas.pdf');
         } else {
@@ -56,7 +59,11 @@ class PengeluaranController extends Controller
             $pdf = FacadePdf::loadView('after-revisi.export.pengeluaran', [
                 'pengeluaran' =>  PengeluaranKas::orderBy("tanggal_keluar", 'ASC')->get(),
                 'title' => 'pengeluaran',
-                'total' => $total
+                'total' => $total,
+                'type' => 'pdf',
+                'dari' => PengeluaranKas::orderBy('tanggal_keluar', 'ASC')->first()->tanggal_keluar,
+                'sampai' => PengeluaranKas::orderBy('tanggal_keluar', 'DESC')->first()->tanggal_keluar,
+
             ]);
             return $pdf->download('pengeluaran kas.pdf');
         }

@@ -27,6 +27,7 @@ class PemasukanController extends Controller
 
     public function export($type)
     {
+
         if ($_GET['dari'] != "" && $_GET['sampai'] != "") {
             if ($type == "excel") {
                 return Excel::download(new ExportPemasukanKas($_GET['dari'], $_GET['sampai']), 'pemasukan kas.xlsx');
@@ -39,7 +40,10 @@ class PemasukanController extends Controller
             $pdf = FacadePdf::loadView('after-revisi.export.pemasukan', [
                 'pemasukan' =>  PemasukanKas::where("tanggal_masuk", ">=", $_GET['dari'])->where("tanggal_masuk", "<=", $_GET['sampai'])->orderBy('tanggal_masuk', 'ASC')->get(),
                 'title' => 'pemasukan',
-                'total' => $total
+                'total' => $total,
+                'type' => 'pdf',
+                'dari' => $_GET['dari'],
+                'sampai' => $_GET['sampai'],
             ]);
             return $pdf->download('pemasukan kas.pdf');
         } else {
@@ -54,7 +58,10 @@ class PemasukanController extends Controller
             $pdf = FacadePdf::loadView('after-revisi.export.pemasukan', [
                 'pemasukan' =>  PemasukanKas::orderBy("tanggal_masuk", 'ASC')->get(),
                 'title' => 'pemasukan',
-                'total' => $total
+                'total' => $total,
+                'type' => 'pdf',
+                'dari' => PemasukanKas::orderBy('tanggal_masuk', 'ASC')->first()->tanggal_masuk,
+                'sampai' => PemasukanKas::orderBy('tanggal_masuk', 'DESC')->first()->tanggal_masuk,
             ]);
             return $pdf->download('pemasukan kas.pdf');
         }

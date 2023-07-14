@@ -30,7 +30,10 @@ class KasbonExport implements FromView, WithColumnWidths
             return view('after-revisi.export.kasbon', [
                 'kasbon' =>  Kasbon::where("tanggal_kasbon", ">=", $this->dari)->where("tanggal_kasbon", "<=", $this->sampai)->orderBy('tanggal_kasbon', 'ASC')->get(),
                 'title' => 'kasbon',
-                'total' => $total
+                'total' => $total,
+                'type' => 'excel',
+                'dari' => $this->dari,
+                'sampai' => $this->sampai,
             ]);
         } else {
             $all = Kasbon::get();
@@ -42,7 +45,10 @@ class KasbonExport implements FromView, WithColumnWidths
             return view('after-revisi.export.kasbon', [
                 'kasbon' =>  Kasbon::orderBy("tanggal_kasbon", 'asc')->get(),
                 'title' => 'kasbon',
-                'total' => $total
+                'total' => $total,
+                'type' => 'excel',
+                'dari' => Kasbon::orderBy('tanggal_kasbon', 'ASC')->first()->tanggal_kasbon,
+                'sampai' => Kasbon::orderBy('tanggal_kasbon', 'DESC')->first()->tanggal_kasbon,
             ]);
         }
     }

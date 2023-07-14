@@ -39,7 +39,10 @@ class KasbonController extends Controller
             $pdf = FacadePdf::loadView('after-revisi.export.kasbon', [
                 'kasbon' =>  Kasbon::where("tanggal_kasbon", ">=", $_GET['dari'])->where("tanggal_kasbon", "<=", $_GET['sampai'])->orderBy('tanggal_kasbon', 'ASC')->get(),
                 'title' => 'kasbon',
-                'total' => $total
+                'type' => 'pdf',
+                'total' => $total,
+                'dari' => $_GET['dari'],
+                'sampai' => $_GET['sampai'],
             ]);
             return $pdf->download('kasbon kas.pdf');
         } else {
@@ -54,8 +57,12 @@ class KasbonController extends Controller
             $pdf = FacadePdf::loadView('after-revisi.export.kasbon', [
                 'kasbon' =>  Kasbon::orderBy("tanggal_kasbon", 'ASC')->get(),
                 'title' => 'kasbon',
-                'total' => $total
+                'total' => $total,
+                'type' => 'pdf',
+                'dari' => Kasbon::orderBy('tanggal_kasbon', 'ASC')->first()->tanggal_kasbon,
+                'sampai' => Kasbon::orderBy('tanggal_kasbon', 'DESC')->first()->tanggal_kasbon,
             ]);
+            // dd('kot');
             return $pdf->download('kasbon kas.pdf');
         }
     }

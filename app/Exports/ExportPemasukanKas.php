@@ -31,7 +31,10 @@ class ExportPemasukanKas implements FromView, WithColumnWidths
             return view('after-revisi.export.pemasukan', [
                 'pemasukan' =>  PemasukanKas::where("tanggal_masuk", ">=", $this->dari)->where("tanggal_masuk", "<=", $this->sampai)->orderBy('tanggal_masuk', 'ASC')->get(),
                 'title' => 'pemasukan',
-                'total' => $total
+                'total' => $total,
+                'type' => 'excel',
+                'dari' => $this->dari,
+                'sampai' => $this->sampai,
             ]);
         } else {
             $all = PemasukanKas::get();
@@ -43,7 +46,10 @@ class ExportPemasukanKas implements FromView, WithColumnWidths
             return view('after-revisi.export.pemasukan', [
                 'pemasukan' =>  PemasukanKas::orderBy("tanggal_masuk", 'asc')->get(),
                 'title' => 'pemasukan',
-                'total' => $total
+                'total' => $total,
+                'type' => 'excel',
+                'dari' => PemasukanKas::orderBy('tanggal_masuk', 'ASC')->first()->tanggal_masuk,
+                'sampai' => PemasukanKas::orderBy('tanggal_masuk', 'DESC')->first()->tanggal_masuk,
             ]);
         }
     }
