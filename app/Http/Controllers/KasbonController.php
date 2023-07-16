@@ -12,10 +12,17 @@ class KasbonController extends Controller
 {
     public function index()
     {
-        if (isset($_GET['dari'])  && isset($_GET['sampai'])) {
+        if (isset($_GET['dari'])  && isset($_GET['sampai']) && isset($_GET['status'])) {
+            if ($_GET['status'] == "semua") {
+                $kasbon =
+                    Kasbon::where("tanggal_kasbon", ">=", $_GET['dari'])->where("tanggal_kasbon", "<=", $_GET['sampai'])->orderBy('status', 'ASC')->orderBy("tanggal_kasbon", 'ASC')->get();
+            } else {
+                $kasbon =
+                    Kasbon::where("tanggal_kasbon", ">=", $_GET['dari'])->where("tanggal_kasbon", "<=", $_GET['sampai'])->where('status', $_GET['status'])->orderBy('status', 'ASC')->orderBy("tanggal_kasbon", 'ASC')->get();
+            }
             return view('after-revisi.kasbon.index', [
                 'title' => 'kasbon',
-                'kasbon' => Kasbon::where("tanggal_kasbon", ">=", $_GET['dari'])->where("tanggal_kasbon", "<=", $_GET['sampai'])->get()
+                'kasbon' => $kasbon
             ]);
         }
         // dd(phpinfo());
@@ -25,43 +32,79 @@ class KasbonController extends Controller
         ]);
     }
 
-    public function export($type)
+    public function export($type, $filter)
     {
         if ($_GET['dari'] != "" && $_GET['sampai'] != "") {
             if ($type == "excel") {
-                return Excel::download(new KasbonExport($_GET['dari'], $_GET['sampai']), 'kasbon kas.xlsx');
+                return Excel::download(new KasbonExport($_GET['dari'], $_GET['sampai'], $filter), 'kasbon kas.xlsx');
             }
-            $all = Kasbon::where("tanggal_kasbon", ">=", $_GET['dari'])->where("tanggal_kasbon", "<=", $_GET['sampai'])->get();
-            $total = 0;
-            foreach ($all as $key => $x) {
-                $total += $x->uang_kasbon;
+            if ($filter == "semua") {
+                $all = Kasbon::where("tanggal_kasbon", ">=", $_GET['dari'])->where("tanggal_kasbon", "<=", $_GET['sampai'])->get();
+                $total = 0;
+                foreach ($all as $key => $x) {
+                    $total += $x->uang_kasbon;
+                }
+                $pdf = FacadePdf::loadView('after-revisi.export.kasbon', [
+                    'kasbon' =>  Kasbon::where("tanggal_kasbon", ">=", $_GET['dari'])->where("tanggal_kasbon", "<=", $_GET['sampai'])->orderBy('status', 'ASC')->orderBy('tanggal_kasbon', 'ASC')->get(),
+                    'title' => 'kasbon',
+                    'type' => 'pdf',
+                    'total' => $total,
+                    'dari' => $_GET['dari'],
+                    'sampai' => $_GET['sampai'],
+                    'filter' => $filter
+                ]);
+            } else {
+                $all = Kasbon::where("tanggal_kasbon", ">=", $_GET['dari'])->where("tanggal_kasbon", "<=", $_GET['sampai'])->where('status', $filter)->get();
+                $total = 0;
+                foreach ($all as $key => $x) {
+                    $total += $x->uang_kasbon;
+                }
+                $pdf = FacadePdf::loadView('after-revisi.export.kasbon', [
+                    'kasbon' =>  Kasbon::where("tanggal_kasbon", ">=", $_GET['dari'])->where("tanggal_kasbon", "<=", $_GET['sampai'])->where('status', $filter)->orderBy('tanggal_kasbon', 'ASC')->get(),
+                    'title' => 'kasbon',
+                    'type' => 'pdf',
+                    'total' => $total,
+                    'dari' => $_GET['dari'],
+                    'sampai' => $_GET['sampai'],
+                    'filter' => $filter
+                ]);
             }
-            $pdf = FacadePdf::loadView('after-revisi.export.kasbon', [
-                'kasbon' =>  Kasbon::where("tanggal_kasbon", ">=", $_GET['dari'])->where("tanggal_kasbon", "<=", $_GET['sampai'])->orderBy('status', 'ASC')->orderBy('tanggal_kasbon', 'ASC')->get(),
-                'title' => 'kasbon',
-                'type' => 'pdf',
-                'total' => $total,
-                'dari' => $_GET['dari'],
-                'sampai' => $_GET['sampai'],
-            ]);
             return $pdf->download('kasbon kas.pdf');
         } else {
             if ($type == "excel") {
-                return Excel::download(new KasbonExport("", ""), 'kasbon kas.xlsx');
+                return Excel::download(new KasbonExport("", "", $filter), 'kasbon kas.xlsx');
             }
-            $all = Kasbon::get();
-            $total = 0;
-            foreach ($all as $key => $x) {
-                $total += $x->uang_kasbon;
+            if ($filter == "semua") {
+                $all = Kasbon::get();
+                $total = 0;
+                foreach ($all as $key => $x) {
+                    $total += $x->uang_kasbon;
+                }
+                $pdf = FacadePdf::loadView('after-revisi.export.kasbon', [
+                    'kasbon' =>  Kasbon::orderBy('status', 'ASC')->orderBy("tanggal_kasbon", 'ASC')->get(),
+                    'title' => 'kasbon',
+                    'total' => $total,
+                    'type' => 'pdf',
+                    'dari' => Kasbon::orderBy('tanggal_kasbon', 'ASC')->first()->tanggal_kasbon,
+                    'sampai' => Kasbon::orderBy('tanggal_kasbon', 'DESC')->first()->tanggal_kasbon,
+                    'filter' => $filter
+                ]);
+            } else {
+                $all = Kasbon::where('status', $filter)->get();
+                $total = 0;
+                foreach ($all as $key => $x) {
+                    $total += $x->uang_kasbon;
+                }
+                $pdf = FacadePdf::loadView('after-revisi.export.kasbon', [
+                    'kasbon' =>  Kasbon::where('status', $filter)->orderBy('status', 'ASC')->orderBy("tanggal_kasbon", 'ASC')->get(),
+                    'title' => 'kasbon',
+                    'total' => $total,
+                    'type' => 'pdf',
+                    'dari' => Kasbon::where("status", $filter)->orderBy('tanggal_kasbon', 'ASC')->first()->tanggal_kasbon,
+                    'sampai' => Kasbon::where("status", $filter)->orderBy('tanggal_kasbon', 'DESC')->first()->tanggal_kasbon,
+                    'filter' => $filter
+                ]);
             }
-            $pdf = FacadePdf::loadView('after-revisi.export.kasbon', [
-                'kasbon' =>  Kasbon::orderBy('status', 'ASC')->orderBy("tanggal_kasbon", 'ASC')->get(),
-                'title' => 'kasbon',
-                'total' => $total,
-                'type' => 'pdf',
-                'dari' => Kasbon::orderBy('tanggal_kasbon', 'ASC')->first()->tanggal_kasbon,
-                'sampai' => Kasbon::orderBy('tanggal_kasbon', 'DESC')->first()->tanggal_kasbon,
-            ]);
             // dd('kot');
             return $pdf->download('kasbon kas.pdf');
         }

@@ -50,7 +50,7 @@ Route::group(['prefix' => '/', 'middleware' => 'auth'], function () {
     Route::get("/kasbon/update/{id}", [KasbonController::class, "show"])->name('kasbon.update');
     Route::put("/kasbon/update/{id}", [KasbonController::class, "update"])->name('kasbon.update.post');
     Route::delete("/kasbon/delete/{id}", [KasbonController::class, "delete"])->name('kasbon.delete.post');
-    Route::get("/kasbon/export/{type}", [KasbonController::class, "export"])->name('kasbon.export');
+    Route::get("/kasbon/export/{type}/{filter}", [KasbonController::class, "export"])->name('kasbon.export');
 
     Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 });

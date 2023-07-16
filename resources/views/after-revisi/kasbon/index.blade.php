@@ -27,23 +27,53 @@
                                         <div class="mb-3 mb-md-0 col-12 col-md-6">
                                             <span>Export : </span>
                                             <div class="btn-group">
-                                                <a class="btn btn-danger dropdown-toggle btn-sm"
-                                                    href="/kasbon/export/pdf?dari={{ isset($_GET['dari']) ? $_GET['dari'] : '' }}&sampai={{ isset($_GET['sampai']) ? $_GET['sampai'] : '' }}">Pdf</a>
+                                                <button type="button" class="btn btn-danger dropdown-toggle btn-sm"
+                                                    data-toggle="dropdown" aria-expanded="false">
+                                                    Pdf </button>
+                                                <div class="dropdown-menu" x-placement="bottom-start"
+                                                    style="position: absolute; transform: translate3d(0px, 32px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                    <a class="dropdown-item"
+                                                        href="/kasbon/export/pdf/lunas?dari={{ isset($_GET['dari']) ? $_GET['dari'] : '' }}&sampai={{ isset($_GET['sampai']) ? $_GET['sampai'] : '' }}">Lunas</a>
+                                                    <a class="dropdown-item"
+                                                        href="/kasbon/export/pdf/belum lunas?dari={{ isset($_GET['dari']) ? $_GET['dari'] : '' }}&sampai={{ isset($_GET['sampai']) ? $_GET['sampai'] : '' }}">Belum
+                                                        Lunas</a>
+                                                    <a class="dropdown-item"
+                                                        href="/kasbon/export/pdf/semua?dari={{ isset($_GET['dari']) ? $_GET['dari'] : '' }}&sampai={{ isset($_GET['sampai']) ? $_GET['sampai'] : '' }}">Semua</a>
+                                                </div>
                                             </div>
                                             <div class="btn-group">
-                                                <a class="btn btn-success dropdown-toggle btn-sm"
-                                                    href="/kasbon/export/excel?dari={{ isset($_GET['dari']) ? $_GET['dari'] : '' }}&sampai={{ isset($_GET['sampai']) ? $_GET['sampai'] : '' }}">Excel</a>
+                                                <button type="button" class="btn btn-success dropdown-toggle btn-sm"
+                                                    data-toggle="dropdown" aria-expanded="false">
+                                                    Excel </button>
+                                                <div class="dropdown-menu" x-placement="bottom-start"
+                                                    style="position: absolute; transform: translate3d(0px, 32px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                    <a class="dropdown-item"
+                                                        href="/kasbon/export/excel/lunas?dari={{ isset($_GET['dari']) ? $_GET['dari'] : '' }}&sampai={{ isset($_GET['sampai']) ? $_GET['sampai'] : '' }}">Lunas</a>
+                                                    <a class="dropdown-item"
+                                                        href="/kasbon/export/excel/belum lunas?dari={{ isset($_GET['dari']) ? $_GET['dari'] : '' }}&sampai={{ isset($_GET['sampai']) ? $_GET['sampai'] : '' }}">Belum
+                                                        Lunas</a>
+                                                    <a class="dropdown-item"
+                                                        href="/kasbon/export/excel/semua?dari={{ isset($_GET['dari']) ? $_GET['dari'] : '' }}&sampai={{ isset($_GET['sampai']) ? $_GET['sampai'] : '' }}">Semua</a>
+                                                </div>
                                             </div>
                                         </div>
                                         <form action="" method="get" class="col-12 col-md-6 w-100">
-                                            <div class="input-group mb-3">
+                                            <div class="input-group">
                                                 <label for="" class="p-2">dari</label>
                                                 <input type="date" required class="form-control " name="dari"
                                                     value="{{ isset($_GET['dari']) ? $_GET['dari'] : '' }}">
                                                 <label for="" class="p-2">sampai</label>
                                                 <input type="date" required class="form-control " name="sampai"
                                                     value="{{ isset($_GET['sampai']) ? $_GET['sampai'] : '' }}">
-                                                <button class="btn btn-success" type="submit"
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="" class="p-2">status</label>
+                                                <select name="status" class="form-control">
+                                                    <option value="semua" selected>semua</option>
+                                                    <option value="lunas">lunas</option>
+                                                    <option value="belum lunas">belum lunas</option>
+                                                </select>
+                                                <button class="btn btn-success ml-2" type="submit"
                                                     id="button-addon2">Filter</button>
                                             </div>
                                         </form>

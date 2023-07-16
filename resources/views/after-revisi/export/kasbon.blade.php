@@ -32,7 +32,7 @@
     <body>
         <div id="halaman">
             <center>
-                <h3>REKAP KASBON</h3>
+                <h3>REKAP KASBON {{ strtoupper($filter) }}</h3>
                 <h4>TGL {{ $dari }} s/d TGL {{ $sampai }}</h4>
             </center>
             <table border="1" style="border-spacing: 0; margin: 0 auto;">
@@ -43,6 +43,7 @@
                         <th scope="col" style="padding: 0.3rem; text-align: left">NO TELEPON</th>
                         <th scope="col" style="padding: 0.3rem; text-align: left">KETERANGAN</th>
                         <th scope="col" style="padding: 0.3rem; text-align: left">UANG KASBON</th>
+                        <th scope="col" style="padding: 0.3rem; text-align: left">STATUS</th>
                     </tr>
                 </thead>
 
@@ -54,10 +55,11 @@
                             <td style="text-align: left">{{ $p->no_telepon }}</td>
                             <td style="text-align: left">{{ $p->keterangan }}</td>
                             <td style="text-align: left">@currency($p->uang_kasbon)</td>
+                            <td style="text-align: left">{{ $p->status }}</td>
                         </tr>
                     @endforeach
                     <tr>
-                        <th id="total" colspan="4" scope="col" style="padding: 0.3rem; text-align: right">
+                        <th id="total" colspan="5" scope="col" style="padding: 0.3rem; text-align: right">
                             TOTAL
                         </th>
                         <td>@currency($total)</td>
@@ -109,6 +111,7 @@
                     <th scope="col" style="padding: 0.3rem; text-align: left">NO TELEPON</th>
                     <th scope="col" style="padding: 0.3rem; text-align: left">KETERANGAN</th>
                     <th scope="col" style="padding: 0.3rem; text-align: left">UANG KASBON</th>
+                    <th scope="col" style="padding: 0.3rem; text-align: left">STATUS</th>
                 </tr>
             </thead>
 
@@ -120,10 +123,11 @@
                         <td style="text-align: left">{{ $p->no_telepon }}</td>
                         <td style="text-align: left">{{ $p->keterangan }}</td>
                         <td style="text-align: left">@currency($p->uang_kasbon)</td>
+                        <td style="text-align: left">{{ $p->status }}</td>
                     </tr>
                 @endforeach
                 <tr>
-                    <th id="total" colspan="4" scope="col" style="padding: 0.3rem; text-align: right">
+                    <th id="total" colspan="5" scope="col" style="padding: 0.3rem; text-align: right">
                         TOTAL
                     </th>
                     <td>@currency($total)</td>
