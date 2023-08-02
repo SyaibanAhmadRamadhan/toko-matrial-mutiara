@@ -12,16 +12,27 @@ class PemasukanController extends Controller
 {
     public function index()
     {
+        $total = 0;
         if (isset($_GET['dari'])  && isset($_GET['sampai'])) {
+            $pemasukan = PemasukanKas::where("tanggal_masuk", ">=", $_GET['dari'])->where("tanggal_masuk", "<=", $_GET['sampai'])->get();
+            foreach ($pemasukan as $key => $x) {
+                $total = $total + $x->uang_masuk;
+            }
             return view('after-revisi.pemasukan-kas.index', [
                 'title' => 'pemasukan-kas',
-                'pemasukan' => PemasukanKas::where("tanggal_masuk", ">=", $_GET['dari'])->where("tanggal_masuk", "<=", $_GET['sampai'])->get()
+                'pemasukan' => $pemasukan,
+                'total' => $total
             ]);
         }
-        // dd(phpinfo());
+
+        $pemasukan = PemasukanKas::orderBy("tanggal_masuk", 'desc')->get();
+        foreach ($pemasukan as $key => $x) {
+            $total = $total + $x->uang_masuk;
+        }
         return view('after-revisi.pemasukan-kas.index', [
             'title' => 'pemasukan-kas',
-            'pemasukan' => PemasukanKas::orderBy("tanggal_masuk", 'desc')->get()
+            'pemasukan' => $pemasukan,
+            'total' => $total
         ]);
     }
 

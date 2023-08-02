@@ -12,16 +12,27 @@ class PengeluaranController extends Controller
 {
     public function index()
     {
+        $total = 0;
         if (isset($_GET['dari'])  && isset($_GET['sampai'])) {
+            $pengeluaran = PengeluaranKas::where("tanggal_keluar", ">=", $_GET['dari'])->where("tanggal_keluar", "<=", $_GET['sampai'])->get();
+            foreach ($pengeluaran as $key => $x) {
+                $total = $total + $x->uang_keluar;
+            }
             return view('after-revisi.pengeluaran-kas.index', [
                 'title' => 'pemasukan-kas',
-                'pengeluaran' => PengeluaranKas::where("tanggal_keluar", ">=", $_GET['dari'])->where("tanggal_keluar", "<=", $_GET['sampai'])->get()
+                'pengeluaran' => $pengeluaran,
+                'total' => $total
             ]);
         }
 
+        $pengeluaran = PengeluaranKas::orderBy("tanggal_keluar", 'desc')->get();
+        foreach ($pengeluaran as $key => $x) {
+            $total = $total + $x->uang_keluar;
+        }
         return view('after-revisi.pengeluaran-kas.index', [
             'title' => 'pengeluaran-kas',
-            'pengeluaran' => PengeluaranKas::all()
+            'pengeluaran' => $pengeluaran,
+            'total' => $total
         ]);
     }
 

@@ -90,6 +90,12 @@
                                             {{ session('success') }}
                                         </div>
                                     @endif
+                                    <div class="alert-success" style="padding: 0.5em; margin-bottom: 1em">
+                                        <center>
+                                            TOTAL KASBON
+                                            <h6>@currency($total)</h6>
+                                        </center>
+                                    </div>
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>

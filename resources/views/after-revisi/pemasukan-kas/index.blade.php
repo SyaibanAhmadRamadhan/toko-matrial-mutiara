@@ -60,13 +60,19 @@
                                             {{ session('success') }}
                                         </div>
                                     @endif
+                                    <div class="alert-success" style="padding: 0.5em; margin-bottom: 1em">
+                                        <center>
+                                            TOTAL PEMASUKAN
+                                            <h6>@currency($total)</h6>
+                                        </center>
+                                    </div>
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
                                                 <th>tanggal masuk</th>
-                                                <th>uang masuk</th>
                                                 <th>deskripsi</th>
                                                 <th>keterangan</th>
+                                                <th>uang masuk</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -74,9 +80,9 @@
                                             @foreach ($pemasukan as $key => $p)
                                                 <tr>
                                                     <td>{{ $p->tanggal_masuk }}</td>
-                                                    <td>@currency($p->uang_masuk)</td>
                                                     <td>{{ $p->deskripsi }}</td>
                                                     <td>{{ $p->keterangan }}</td>
+                                                    <td>@currency($p->uang_masuk)</td>
                                                     <td>
                                                         <div class="d-flex flex-row mb-3">
                                                             <div><button type="button"
@@ -99,6 +105,9 @@
                                                     </td>
                                                 </tr>
                                             @endforeach
+                                            {{-- <tr>
+                                                <td colspan="3">asal</td>
+                                            </tr> --}}
                                         </tbody>
                                     </table>
                                 </div>

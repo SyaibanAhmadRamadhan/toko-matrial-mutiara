@@ -12,6 +12,7 @@ class KasbonController extends Controller
 {
     public function index()
     {
+        $total = 0;
         if (isset($_GET['dari'])  && isset($_GET['sampai']) && isset($_GET['status'])) {
             if ($_GET['status'] == "semua") {
                 $kasbon =
@@ -20,15 +21,24 @@ class KasbonController extends Controller
                 $kasbon =
                     Kasbon::where("tanggal_kasbon", ">=", $_GET['dari'])->where("tanggal_kasbon", "<=", $_GET['sampai'])->where('status', $_GET['status'])->orderBy('status', 'ASC')->orderBy("tanggal_kasbon", 'ASC')->get();
             }
+            foreach ($kasbon as $key => $x) {
+                $total = $total + $x->uang_kasbon;
+            }
             return view('after-revisi.kasbon.index', [
                 'title' => 'kasbon',
-                'kasbon' => $kasbon
+                'kasbon' => $kasbon,
+                'total' => $total
             ]);
         }
-        // dd(phpinfo());
+
+        $kasbon = Kasbon::orderBy('status', 'ASC')->orderBy("tanggal_kasbon", 'ASC')->get();
+        foreach ($kasbon as $key => $x) {
+            $total = $total + $x->uang_kasbon;
+        }
         return view('after-revisi.kasbon.index', [
             'title' => 'kasbon',
-            'kasbon' => Kasbon::orderBy('status', 'ASC')->orderBy("tanggal_kasbon", 'ASC')->get()
+            'kasbon' => $kasbon,
+            'total' => $total
         ]);
     }
 

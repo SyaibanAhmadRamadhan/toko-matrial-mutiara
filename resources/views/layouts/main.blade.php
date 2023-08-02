@@ -58,6 +58,7 @@
                 "lengthChange": false,
                 "autoWidth": false,
                 "order": [],
+                "pageLength": 50
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         });
     </script>
