@@ -14,7 +14,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>tambah pemasukan kas</h1>
+                            <h1>TAMBAH PEMASUKAN KAS</h1>
                         </div>
                     </div>
                 </div><!-- /.container-fluid -->
@@ -43,7 +43,7 @@
                                     @csrf
                                     <div class="card-body">
                                         <div class="form-group">
-                                            <label for="tanggal_masuk">tanggal masuk</label>
+                                            <label for="tanggal_masuk">Tanggal</label>
                                             <input type="date" name="tanggal_masuk"
                                                 class="form-control @error('tanggal_masuk')
                                                 is-invalid
@@ -56,7 +56,7 @@
                                             @enderror
                                         </div>
                                         <div class="form-group">
-                                            <label for="uang_masuk">uang masuk</label>
+                                            <label for="uang_masuk">Uang Masuk</label>
                                             <input type="text" name="uang_masuk"
                                                 class="form-control @error('uang_masuk')
                                                 is-invalid
@@ -70,7 +70,7 @@
                                             @enderror
                                         </div>
                                         <div class="form-group">
-                                            <label for="deskripsi">deskripsi</label>
+                                            <label for="deskripsi">Deskripsi</label>
                                             <input type="text" name="deskripsi"
                                                 class="form-control @error('deskripsi')
                                                 is-invalid
@@ -84,7 +84,7 @@
                                             @enderror
                                         </div>
                                         <div class="form-group">
-                                            <label for="keterangan">keterangan</label>
+                                            <label for="keterangan">Keterangan</label>
                                             <textarea type="text" name="keterangan"
                                                 class="form-control @error('keterangan')
                                                 is-invalid
@@ -96,33 +96,6 @@
                                                 </div>
                                             @enderror
                                         </div>
-                                        {{-- <div class="form-group">
-                                            <label for="stock_product">stock product</label>
-                                            <input type="number" name="stock_product"
-                                                class="form-control @error('stock_product')
-                                                is-invalid
-                                            @enderror"
-                                                id="rupiah" placeholder="Masukan stock product"
-                                                value="{{ old('stock_product') }}">
-                                            @error('stock_product')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div> --}}
-                                        {{-- <div class="form-group">
-                                            <label for="status">status karyawan</label>
-                                            <div class="form-check">
-                                                <input class="form-check-input" value="Karyawan Tetap" type="radio"
-                                                    name="status"checked @checked(old('status'))>
-                                                <label class="form-check-label">Karyawan Tetap</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" value="Karyawan Tidak Tetap" type="radio"
-                                                    name="status" @checked(old('status'))>
-                                                <label class="form-check-label">Karyawan Tidak Tetap</label>
-                                            </div>
-                                        </div> --}}
                                     </div>
                                     <!-- /.card-body -->
                                     <div class="card-footer">

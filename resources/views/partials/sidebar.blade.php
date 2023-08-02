@@ -86,7 +86,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item {{ Request::is('kasbon*') ? 'menu-open' : '' }}">
+                {{-- <li class="nav-item {{ Request::is('kasbon*') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{ Request::is('kasbon*') ? 'active' : '' }}">
                         <p>
                             kasbon kas
@@ -109,7 +109,7 @@
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

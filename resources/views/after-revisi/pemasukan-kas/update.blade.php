@@ -14,7 +14,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>update pemasukan kas</h1>
+                            <h1>EDIT PEMASUKAN KAS</h1>
                         </div>
                     </div>
                 </div><!-- /.container-fluid -->
@@ -44,7 +44,7 @@
                                     @csrf
                                     <div class="card-body">
                                         <div class="form-group">
-                                            <label for="tanggal_masuk">tanggal masuk</label>
+                                            <label for="tanggal_masuk">Tanggal</label>
                                             <input type="date" name="tanggal_masuk"
                                                 class="form-control @error('tanggal_masuk')
                                                 is-invalid
@@ -57,7 +57,7 @@
                                             @enderror
                                         </div>
                                         <div class="form-group">
-                                            <label for="uang_masuk">uang masuk</label>
+                                            <label for="uang_masuk">Uang Masuk</label>
                                             <input type="text" name="uang_masuk"
                                                 class="form-control @error('uang_masuk')
                                                 is-invalid
@@ -71,7 +71,7 @@
                                             @enderror
                                         </div>
                                         <div class="form-group">
-                                            <label for="deskripsi">deskripsi</label>
+                                            <label for="deskripsi">Deskripsi</label>
                                             <input type="text" name="deskripsi"
                                                 class="form-control @error('deskripsi')
                                                 is-invalid
@@ -85,7 +85,7 @@
                                             @enderror
                                         </div>
                                         <div class="form-group">
-                                            <label for="keterangan">keterangan</label>
+                                            <label for="keterangan">Keterangan</label>
                                             <textarea type="text" name="keterangan"
                                                 class="form-control @error('keterangan')
                                                 is-invalid

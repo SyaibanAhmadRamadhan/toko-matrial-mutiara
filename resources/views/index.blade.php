@@ -17,7 +17,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Dashboard</h1>
+                            <h1 class="m-0">DASHBOARD</h1>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
@@ -29,26 +29,23 @@
                 <div class="container-fluid">
                     <!-- Small boxes (Stat box) -->
                     <div class="row">
-                        <div class="col-lg-3 col-6">
+                        {{-- <div class="col-lg-3 col-6">
                             <!-- small box -->
                             <div class="small-box bg-success">
                                 <div class="inner">
-                                    <h3>{{ count($kasbon) }} DATA</h3>
+                                    <h3>{{ count($kasbon) }}</h3>
                                     <h5>KASBON</h5>
                                     <p>@currency($totalKasbon)</p>
                                 </div>
-                                {{-- <div class="icon">
-                                    <i class="ion ion-stats-bars"></i>
-                                </div> --}}
                                 <a href="{{ route('kasbon.index') }}" class="small-box-footer">More info <i
                                         class="fas fa-arrow-circle-right"></i></a>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="col-lg-3 col-6">
                             <!-- small box -->
                             <div class="small-box bg-info">
                                 <div class="inner">
-                                    <h3>{{ count($pengeluaran) }} DATA</h3>
+                                    <h3>{{ count($pengeluaran) }}</h3>
                                     <h5>PENGELUARAN</h5>
                                     <p>@currency($totalPengeluaran)</p>
                                 </div>
@@ -60,7 +57,7 @@
                         <div class="col-lg-3 col-6">
                             <div class="small-box bg-warning">
                                 <div class="inner">
-                                    <h3>{{ count($pemasukan) }} DATA</h3>
+                                    <h3>{{ count($pemasukan) }}</h3>
                                     <h5>PEMASUKAN</h5>
                                     <p>@currency($totalPemasukan)</p>
                                 </div>
@@ -71,11 +68,11 @@
                         <div class="col-lg-3 col-6">
                             <div class="small-box bg-fuchsia">
                                 <div class="inner">
-                                    <h3>{{ count($pemasukan) }} DATA</h3>
-                                    <h5>REKAPTULASI</h5>
-                                    <p>@currency($totalPemasukan)</p>
+                                    <h3>{{ count($pemasukan) }}</h3>
+                                    <h5>SALDO AKHIR</h5>
+                                    <p>@currency($totalPemasukan - $totalPengeluaran)</p>
                                 </div>
-                                <a href="{{ route('pemasukan.index') }}" class="small-box-footer">More info <i
+                                <a href="{{ route('rekaptulasi.index') }}" class="small-box-footer">More info <i
                                         class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>

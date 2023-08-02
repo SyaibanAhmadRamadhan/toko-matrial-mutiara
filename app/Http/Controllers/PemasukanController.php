@@ -25,7 +25,7 @@ class PemasukanController extends Controller
             ]);
         }
 
-        $pemasukan = PemasukanKas::orderBy("tanggal_masuk", 'desc')->get();
+        $pemasukan = PemasukanKas::orderBy("tanggal_masuk", 'asc')->get();
         foreach ($pemasukan as $key => $x) {
             $total = $total + $x->uang_masuk;
         }

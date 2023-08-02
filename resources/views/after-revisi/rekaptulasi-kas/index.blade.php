@@ -10,7 +10,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>data rekaptulasi kas</h1>
+                            <h1>DATA REKAPTULASI KAS</h1>
                         </div>
                     </div>
                 </div><!-- /.container-fluid -->
@@ -38,10 +38,10 @@
 
                                         <form action="" method="get" class="col-12 col-md-6 w-100">
                                             <div class="input-group mb-3">
-                                                <label for="" class="p-2">dari</label>
+                                                <label for="" class="p-2">Dari</label>
                                                 <input type="date" required class="form-control " name="dari"
                                                     value="{{ isset($_GET['dari']) ? $_GET['dari'] : $data[0]['tanggal'] }}">
-                                                <label for="" class="p-2">sampai</label>
+                                                <label for="" class="p-2">Sampai</label>
                                                 <input type="date" required class="form-control " name="sampai"
                                                     value="{{ isset($_GET['sampai']) ? $_GET['sampai'] : $data[count($data) - 1]['tanggal'] }}">
                                                 <button class="btn btn-success" type="submit"
@@ -64,14 +64,14 @@
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th rowspan="2" style="text-align: center">tanggal</th>
-                                                <th rowspan="2" style="text-align: center">deskripsi</th>
-                                                <th rowspan="2" style="text-align: center">keterangan</th>
-                                                <th colspan="2" style="text-align: center">jenis</th>
+                                                <th rowspan="2" style="text-align: center">TANGGAL</th>
+                                                <th rowspan="2" style="text-align: center">DESKRIPSI</th>
+                                                <th rowspan="2" style="text-align: center">KETERANGAN</th>
+                                                <th colspan="2" style="text-align: center">JENIS</th>
                                             </tr>
                                             <tr>
-                                                <th style="text-align: center">pemasukan</th>
-                                                <th style="text-align: center">pengeluaran</th>
+                                                <th style="text-align: center">PEMASUKAN</th>
+                                                <th style="text-align: center">PENGELUARAN</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -92,7 +92,7 @@
                                             @endforeach
 
                                             <tr>
-                                                <th colspan="3" style="text-align: right">total</th>
+                                                <th colspan="3" style="text-align: right">TOTAL</th>
                                                 <th colspan="1" style="text-align: center">@currency($totalPemasukan)</th>
                                                 <th colspan="1" style="text-align: center">@currency($totalPengeluaran)</th>
                                             </tr>

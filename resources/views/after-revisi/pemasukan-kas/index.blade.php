@@ -10,7 +10,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>data pemasukan kas</h1>
+                            <h1>DATA PEMASUKAN KAS</h1>
                         </div>
                     </div>
                 </div><!-- /.container-fluid -->
@@ -37,12 +37,12 @@
                                         </div>
                                         <form action="" method="get" class="col-12 col-md-6 w-100">
                                             <div class="input-group mb-3">
-                                                <label for="" class="p-2">dari</label>
+                                                <label for="" class="p-2">Dari</label>
                                                 <input type="date" required class="form-control " name="dari"
-                                                    value="{{ isset($_GET['dari']) ? $_GET['dari'] : '' }}">
-                                                <label for="" class="p-2">sampai</label>
+                                                    value="{{ isset($_GET['dari']) ? $_GET['dari'] : $pemasukan[0]->tanggal_masuk }}">
+                                                <label for="" class="p-2">Sampai</label>
                                                 <input type="date" required class="form-control " name="sampai"
-                                                    value="{{ isset($_GET['sampai']) ? $_GET['sampai'] : '' }}">
+                                                    value="{{ isset($_GET['sampai']) ? $_GET['sampai'] : $pemasukan[count($pemasukan) - 1]->tanggal_masuk }}">
                                                 <button class="btn btn-success" type="submit"
                                                     id="button-addon2">Filter</button>
                                             </div>
@@ -69,11 +69,11 @@
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th>tanggal masuk</th>
-                                                <th>deskripsi</th>
-                                                <th>keterangan</th>
-                                                <th>uang masuk</th>
-                                                <th>Action</th>
+                                                <th>TANGGAL</th>
+                                                <th>DESKRIPSI</th>
+                                                <th>KETERANGAN</th>
+                                                <th>UANG MASUK</th>
+                                                <th>ACTION</th>
                                             </tr>
                                         </thead>
                                         <tbody>

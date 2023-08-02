@@ -9,8 +9,7 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('auth.logout') }}" role="button">logout
-                {{-- <i class="fas fa-th-large"></i> --}}
+            <a class="nav-link" href="{{ route('auth.logout') }}" role="button">LOGOUT
             </a>
         </li>
     </ul>

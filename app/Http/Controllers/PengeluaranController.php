@@ -25,7 +25,7 @@ class PengeluaranController extends Controller
             ]);
         }
 
-        $pengeluaran = PengeluaranKas::orderBy("tanggal_keluar", 'desc')->get();
+        $pengeluaran = PengeluaranKas::orderBy("tanggal_keluar", 'asc')->get();
         foreach ($pengeluaran as $key => $x) {
             $total = $total + $x->uang_keluar;
         }
