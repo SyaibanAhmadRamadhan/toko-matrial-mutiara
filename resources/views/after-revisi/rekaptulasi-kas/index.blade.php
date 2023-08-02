@@ -10,7 +10,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>DATA REKAPTULASI KAS</h1>
+                            <h1>DATA REKAPITULASI KAS</h1>
                         </div>
                     </div>
                 </div><!-- /.container-fluid -->
@@ -28,11 +28,11 @@
                                             <span>Export : </span>
                                             <div class="btn-group">
                                                 <a class="btn btn-danger dropdown-toggle btn-sm"
-                                                    href="/rekaptulasi/export/pdf?dari={{ isset($_GET['dari']) ? $_GET['dari'] : '' }}&sampai={{ isset($_GET['sampai']) ? $_GET['sampai'] : '' }}">Pdf</a>
+                                                    href="/rekapitulasi/export/pdf?dari={{ isset($_GET['dari']) ? $_GET['dari'] : '' }}&sampai={{ isset($_GET['sampai']) ? $_GET['sampai'] : '' }}">Pdf</a>
                                             </div>
                                             <div class="btn-group">
                                                 <a class="btn btn-success dropdown-toggle btn-sm"
-                                                    href="/rekaptulasi/export/excel?dari={{ isset($_GET['dari']) ? $_GET['dari'] : '' }}&sampai={{ isset($_GET['sampai']) ? $_GET['sampai'] : '' }}">Excel</a>
+                                                    href="/rekapitulasi/export/excel?dari={{ isset($_GET['dari']) ? $_GET['dari'] : '' }}&sampai={{ isset($_GET['sampai']) ? $_GET['sampai'] : '' }}">Excel</a>
                                             </div>
                                         </div>
 

@@ -58,7 +58,7 @@
                             <div class="small-box bg-warning">
                                 <div class="inner">
                                     {{-- <h3>{{ count($pemasukan) }}</h3> --}}
-                                    <h5>TOTAL EMASUKAN</h5>
+                                    <h5>TOTAL PEMASUKAN</h5>
                                     <p>@currency($totalPemasukan)</p>
                                 </div>
                                 <a href="{{ route('pemasukan.index') }}" class="small-box-footer">More info <i

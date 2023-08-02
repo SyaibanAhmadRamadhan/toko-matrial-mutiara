@@ -77,7 +77,7 @@ class KasbonController extends Controller
                     'dari' => $_GET['dari'],
                     'sampai' => $_GET['sampai'],
                     'filter' => $filter
-                ]);
+                ])->setPaper('a4', 'landscape');;
             }
             return $pdf->download('kasbon kas.pdf');
         } else {
@@ -98,7 +98,7 @@ class KasbonController extends Controller
                     'dari' => Kasbon::orderBy('tanggal_kasbon', 'ASC')->first()->tanggal_kasbon,
                     'sampai' => Kasbon::orderBy('tanggal_kasbon', 'DESC')->first()->tanggal_kasbon,
                     'filter' => $filter
-                ]);
+                ])->setPaper('a4', 'landscape');;
             } else {
                 $all = Kasbon::where('status', $filter)->get();
                 $total = 0;
@@ -113,7 +113,7 @@ class KasbonController extends Controller
                     'dari' => Kasbon::where("status", $filter)->orderBy('tanggal_kasbon', 'ASC')->first()->tanggal_kasbon,
                     'sampai' => Kasbon::where("status", $filter)->orderBy('tanggal_kasbon', 'DESC')->first()->tanggal_kasbon,
                     'filter' => $filter
-                ]);
+                ])->setPaper('a4', 'landscape');;
             }
             // dd('kot');
             return $pdf->download('kasbon kas.pdf');

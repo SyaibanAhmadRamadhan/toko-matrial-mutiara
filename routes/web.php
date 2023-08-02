@@ -54,8 +54,8 @@ Route::group(['prefix' => '/', 'middleware' => 'auth'], function () {
     Route::delete("/kasbon/delete/{id}", [KasbonController::class, "delete"])->name('kasbon.delete.post');
     Route::get("/kasbon/export/{type}/{filter}", [KasbonController::class, "export"])->name('kasbon.export');
 
-    Route::get("/rekaptulasi", [RekaptuliasiController::class, "index"])->name('rekaptulasi.index');
-    Route::get("/rekaptulasi/export/{type}", [RekaptuliasiController::class, "export"])->name('rekaptulasi.export');
+    Route::get("/rekapitulasi", [RekaptuliasiController::class, "index"])->name('rekaptulasi.index');
+    Route::get("/rekapitulasi/export/{type}", [RekaptuliasiController::class, "export"])->name('rekaptulasi.export');
     Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 });
 

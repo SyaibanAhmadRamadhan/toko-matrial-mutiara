@@ -115,7 +115,7 @@ class RekaptuliasiController extends Controller
                 'totalPemasukan' => $totalPemasukan,
                 'total' => $total,
                 'data' => $data
-            ]);
+            ])->setPaper('a4', 'landscape');;
             return $pdf->download('pengeluaran kas.pdf');
         } else {
             if ($type == "excel") {
@@ -154,7 +154,7 @@ class RekaptuliasiController extends Controller
                 'totalPemasukan' => $totalPemasukan,
                 'total' => $total,
                 'data' => $data
-            ]);
+            ])->setPaper('a4', 'landscape');
             return $pdf->download('pengeluaran kas.pdf');
         }
     }

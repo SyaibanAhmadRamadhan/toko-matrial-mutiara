@@ -54,7 +54,7 @@ class PengeluaranController extends Controller
                 'type' => 'pdf',
                 'dari' => $_GET['dari'],
                 'sampai' => $_GET['sampai'],
-            ]);
+            ])->setPaper('a4', 'landscape');;
             return $pdf->download('pengeluaran kas.pdf');
         } else {
             if ($type == "excel") {
@@ -73,7 +73,7 @@ class PengeluaranController extends Controller
                 'dari' => PengeluaranKas::orderBy('tanggal_keluar', 'ASC')->first()->tanggal_keluar,
                 'sampai' => PengeluaranKas::orderBy('tanggal_keluar', 'DESC')->first()->tanggal_keluar,
 
-            ]);
+            ])->setPaper('a4', 'landscape');;
             return $pdf->download('pengeluaran kas.pdf');
         }
     }
