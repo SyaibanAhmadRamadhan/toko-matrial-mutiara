@@ -34,7 +34,7 @@
                             <div class="small-box bg-success">
                                 <div class="inner">
                                     <h3>{{ count($kasbon) }}</h3>
-                                    <h5>KASBON</h5>
+                                    <h5>TOTAL KASBON</h5>
                                     <p>@currency($totalKasbon)</p>
                                 </div>
                                 <a href="{{ route('kasbon.index') }}" class="small-box-footer">More info <i
@@ -45,8 +45,8 @@
                             <!-- small box -->
                             <div class="small-box bg-info">
                                 <div class="inner">
-                                    <h3>{{ count($pengeluaran) }}</h3>
-                                    <h5>PENGELUARAN</h5>
+                                    {{-- <h3>{{ count($pengeluaran) }}</h3> --}}
+                                    <h5>TOTAL PENGELUARAN</h5>
                                     <p>@currency($totalPengeluaran)</p>
                                 </div>
                                 <a href="{{ route('pengeluaran.index') }}" class="small-box-footer">More info <i
@@ -57,8 +57,8 @@
                         <div class="col-lg-3 col-6">
                             <div class="small-box bg-warning">
                                 <div class="inner">
-                                    <h3>{{ count($pemasukan) }}</h3>
-                                    <h5>PEMASUKAN</h5>
+                                    {{-- <h3>{{ count($pemasukan) }}</h3> --}}
+                                    <h5>TOTAL EMASUKAN</h5>
                                     <p>@currency($totalPemasukan)</p>
                                 </div>
                                 <a href="{{ route('pemasukan.index') }}" class="small-box-footer">More info <i
@@ -68,7 +68,7 @@
                         <div class="col-lg-3 col-6">
                             <div class="small-box bg-fuchsia">
                                 <div class="inner">
-                                    <h3>{{ count($pemasukan) }}</h3>
+                                    {{-- <h3>{{ count($pemasukan) + count($pengeluaran) }}</h3> --}}
                                     <h5>SALDO AKHIR</h5>
                                     <p>@currency($totalPemasukan - $totalPengeluaran)</p>
                                 </div>

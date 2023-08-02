@@ -42,6 +42,7 @@
                         <th rowspan="2" style="text-align: center">DESKRIPSI</th>
                         <th rowspan="2" style="text-align: center">KETERANGAN</th>
                         <th colspan="2" style="text-align: center">JENIS</th>
+                        <th rowspan="2" style="text-align: center">SALDO AKHIR</th>
                     </tr>
                     <tr>
                         <th style="text-align: center">PEMASUKAN</th>
@@ -50,29 +51,38 @@
                 </thead>
 
                 <tbody>
+                    @php
+                        $saldoakhir = 0;
+                    @endphp
                     @foreach ($data as $k => $p)
                         <tr>
                             <td>{{ $p['tanggal'] }}</td>
                             <td>{{ $p['deskripsi'] }}</td>
                             <td>{{ $p['keterangan'] }}</td>
                             @isset($p['uang_masuk'])
+                                @php
+                                    $saldoakhir = $saldoakhir + $p['uang_masuk'];
+                                @endphp
                                 <td style="text-align: center">@currency($p['uang_masuk'])</td>
                                 <td style="text-align: center;color: red;"><strong>-</strong></td>
                             @endisset
                             @isset($p['uang_keluar'])
+                                @php
+                                    $saldoakhir = $saldoakhir - $p['uang_keluar'];
+                                @endphp
                                 <td style="text-align: center;color: red;"><strong>-</strong></td>
                                 <td style="text-align: center">@currency($p['uang_keluar'])</td>
                             @endisset
+                            <td style="text-align: center">@currency($saldoakhir)</td>
                         </tr>
                     @endforeach
                     <tr>
-                        <th colspan="3" style="text-align: right">total</th>
+                        <th colspan="1"></th>
+                        <th colspan="1"></th>
+                        <th colspan="1"></th>
                         <th colspan="1" style="text-align: center">@currency($totalPemasukan)</th>
                         <th colspan="1" style="text-align: center">@currency($totalPengeluaran)</th>
-                    </tr>
-                    <tr>
-                        <th colspan="3" style="text-align: right">SALDO</th>
-                        <th colspan="2" style="text-align: center">@currency($totalPemasukan - $totalPengeluaran)</th>
+                        <th colspan="1" style="text-align: center">@currency($saldoakhir)</th>
                     </tr>
                 </tbody>
             </table>
@@ -120,6 +130,7 @@
                     <th rowspan="2" style="text-align: center">DESKRIPSI</th>
                     <th rowspan="2" style="text-align: center">KETERANGAN</th>
                     <th colspan="2" style="text-align: center">JENIS</th>
+                    <th rowspan="2" style="text-align: center">SALDO AKHIR</th>
                 </tr>
                 <tr>
                     <th style="text-align: center">PEMASUKAN</th>
@@ -128,6 +139,9 @@
             </thead>
 
             <tbody>
+                @php
+                    $saldoakhir = 0;
+                @endphp
                 @foreach ($data as $k => $p)
                     <tr>
                         <td>{{ $p['tanggal'] }}</td>
@@ -136,22 +150,37 @@
                         @isset($p['uang_masuk'])
                             <td style="text-align: center">@currency($p['uang_masuk'])</td>
                             <td style="text-align: center;color: red;"><strong>-</strong></td>
+                            @php
+                                $saldoakhir = $saldoakhir + $p['uang_masuk'];
+                            @endphp
                         @endisset
                         @isset($p['uang_keluar'])
+                            @php
+                                $saldoakhir = $saldoakhir - $p['uang_keluar'];
+                            @endphp
                             <td style="text-align: center;color: red;"><strong>-</strong></td>
                             <td style="text-align: center">@currency($p['uang_keluar'])</td>
                         @endisset
+                        <td style="text-align: center">@currency($saldoakhir)</td>
                     </tr>
                 @endforeach
                 <tr>
+                    <th colspan="1"></th>
+                    <th colspan="1"></th>
+                    <th colspan="1"></th>
+                    <th colspan="1" style="text-align: center">@currency($totalPemasukan)</th>
+                    <th colspan="1" style="text-align: center">@currency($totalPengeluaran)</th>
+                    <th colspan="1" style="text-align: center">@currency($saldoakhir)</th>
+                </tr>
+                {{-- <tr>
                     <th colspan="3" style="text-align: right">TOTAL</th>
                     <th colspan="1" style="text-align: center">@currency($totalPemasukan)</th>
                     <th colspan="1" style="text-align: center">@currency($totalPengeluaran)</th>
-                </tr>
-                <tr>
+                </tr> --}}
+                {{-- <tr>
                     <th colspan="3" style="text-align: right">SALDO</th>
                     <th colspan="2" style="text-align: center">@currency($totalPemasukan - $totalPengeluaran)</th>
-                </tr>
+                </tr> --}}
             </tbody>
         </table>
 

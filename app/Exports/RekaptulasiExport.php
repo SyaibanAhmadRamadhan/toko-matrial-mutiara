@@ -103,6 +103,7 @@ class RekaptulasiExport implements FromView, WithColumnWidths
             'C' => 30,
             'D' => 28,
             'E' => 28,
+            'F' => 28,
         ];
     }
 }
