@@ -38,11 +38,9 @@ class PengeluaranController extends Controller
 
     public function export($type)
     {
-
-
         if ($_GET['dari'] != "" && $_GET['sampai'] != "") {
             if ($type == "excel") {
-                return Excel::download(new ExportPengeluaranKas($_GET['dari'], $_GET['sampai']), 'pemasukan kas.xlsx');
+                return Excel::download(new ExportPengeluaranKas($_GET['dari'], $_GET['sampai']), 'pengeluaran kas.xlsx');
             }
             $all = PengeluaranKas::where("tanggal_keluar", ">=", $_GET['dari'])->where("tanggal_keluar", "<=", $_GET['sampai'])->get();
             $total = 0;

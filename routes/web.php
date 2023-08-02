@@ -1,5 +1,6 @@
 <?php
 
+use App\Exports\RekaptulasiExport;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SlipGajiController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\KasbonController;
 use App\Http\Controllers\PemasukanController;
 use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RekaptuliasiController;
 use App\Http\Controllers\SpendingProductController;
 use App\Http\Controllers\SupplierController;
 use App\Models\Kasbon;
@@ -52,6 +54,8 @@ Route::group(['prefix' => '/', 'middleware' => 'auth'], function () {
     Route::delete("/kasbon/delete/{id}", [KasbonController::class, "delete"])->name('kasbon.delete.post');
     Route::get("/kasbon/export/{type}/{filter}", [KasbonController::class, "export"])->name('kasbon.export');
 
+    Route::get("/rekaptulasi", [RekaptuliasiController::class, "index"])->name('rekaptulasi.index');
+    Route::get("/rekaptulasi/export/{type}", [RekaptuliasiController::class, "export"])->name('rekaptulasi.export');
     Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 });
 
